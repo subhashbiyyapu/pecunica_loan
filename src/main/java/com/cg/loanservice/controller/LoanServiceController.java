@@ -2,6 +2,8 @@ package com.cg.loanservice.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -30,7 +32,7 @@ public class LoanServiceController {
 	}
 	
 	@PostMapping(value="/loanrequest")
-	public @ResponseBody LoanRequestEntity addLoanRequest( @RequestBody LoanRequestEntity loanRequestObj) {
+	public @ResponseBody LoanRequestEntity addLoanRequest(@Valid @RequestBody LoanRequestEntity loanRequestObj) {
 		return service.addLoanRequest(loanRequestObj);
 		
 	}
