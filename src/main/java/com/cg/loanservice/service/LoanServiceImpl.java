@@ -62,7 +62,7 @@ public class LoanServiceImpl  implements LoanService{
 	    loanRequestObj.setEmployeeId(employeeId);
 	    loanRequestObj.setLoanStatus("accepted");
 	    loanServiceDao.saveAndFlush(loanRequestObj);
-		logger.info("In service accepting loan request"+loanRequestId);
+		logger.info("In service accepting loan request "+loanRequestId);
 
 	    //URL has to be written 
 		return restTemplate.postForObject("http://localhost:9092/loan", loanRequestObj,Boolean.class);

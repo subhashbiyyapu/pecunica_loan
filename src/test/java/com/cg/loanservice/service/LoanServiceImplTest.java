@@ -2,8 +2,11 @@ package com.cg.loanservice.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import java.util.List;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,42 +17,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
+
 import com.cg.loanservice.dao.LoanServiceDao;
 import com.cg.loanservice.entity.LoanRequestEntity;
 
-@RunWith(MockitoJUnitRunner.class)
+
 @SpringBootTest
 class LoanServiceImplTest {
 
-	@InjectMocks
+
 	@Autowired
 	LoanServiceImpl service;
 	@Autowired
 	LoanServiceDao dao;
 	
-	@Mock
-    private RestTemplate restTemplate;
+
 	
-	
-	
-@Test
-void rejectLoanRequestTest()
-{
-	LoanRequestEntity obj=new LoanRequestEntity();
-	obj.setLoanStatus("pending");
-	service.addLoanRequest(obj);
-	service.rejectLoanRequest((long) 3);
-	LoanRequestEntity returnedObj= dao.findById((long)3).get();
-	assertEquals("rejected",returnedObj.getLoanStatus());
-	
-}
+
+
 
 @Test
 void fetchLoanRequests()
 {
+	LoanRequestEntity request1=new LoanRequestEntity(121L, 5555555555L, 100000.0, "homeloan", 12.5, 36, 670, "pending", 123456L);
+	LoanRequestEntity request2=new LoanRequestEntity(122L, 5555555556L, 100000.0, "homeloan", 12.5, 36, 670, "pending", 123456L);
+	service.addLoanRequest(request1);
+	service.addLoanRequest(request2);
+
+	service.rejectLoanRequest(3L);
 	List<LoanRequestEntity> loanList=service.fetchAllLoanRequests();
-	long temp[]=new long[2];
-	long test[]= {2,1};
+	long temp[]=new long[3];
+	long test[]= {4,2,1};
 	int i=0;
 	
 	for(LoanRequestEntity entity :loanList)
@@ -58,7 +56,11 @@ void fetchLoanRequests()
 	i++;
 	}
 	assertArrayEquals(test, temp);
+	dao.deleteById(3L);
+	dao.deleteById(4L);
+	
 }
+
 
 }
 
