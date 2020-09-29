@@ -38,7 +38,7 @@ class LoanServiceImplTest3 {
          .thenReturn(true);
 		service.addLoanRequest(obj);
 		service.acceptLoanRequest((long)3, (long)12345);
-		assertEquals(dao.findById((long)(3)).get().getLoanStatus(), "accepted");
+		assertEquals("accepted",dao.findById((long)(3)).get().getLoanStatus() );
 	
 	}
 	

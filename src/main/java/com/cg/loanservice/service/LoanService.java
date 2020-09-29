@@ -5,10 +5,10 @@ import java.util.List;
 import com.cg.loanservice.entity.LoanRequestEntity;
 
 public interface LoanService {
-	Boolean isAccountNoValid(Long AccountNo);
+	Boolean isAccountNoValid(Long accountNo);
 	LoanRequestEntity addLoanRequest(LoanRequestEntity loanRequestObj);
-	 Boolean acceptLoanRequest(Long LoanRequestId,Long employeeId);
-	 Boolean rejectLoanRequest(Long LoanRequestId);
+	 Boolean acceptLoanRequest(Long loanRequestId,Long employeeId);
+	 Boolean rejectLoanRequest(Long loanRequestId);
 	 List<LoanRequestEntity> fetchAllLoanRequests();
 	 
 

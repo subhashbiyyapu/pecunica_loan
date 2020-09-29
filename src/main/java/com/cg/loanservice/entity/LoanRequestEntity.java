@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
 
 import com.cg.loanservice.validator.AccountNumber;
 
@@ -63,11 +63,11 @@ public class LoanRequestEntity {
 	 private String loanStatus;
 	
 	@Column(name="EMPLOYEEID")
-	 private Long EmployeeId;
+	 private Long employeeId;
 	 
 	public LoanRequestEntity() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public LoanRequestEntity(Long loanRequestId, Long accountNo, Double amount, String loanType, Double rateOfInterest,
@@ -81,7 +81,7 @@ public class LoanRequestEntity {
 		this.tenure = tenure;
 		this.creditScore = creditScore;
 		this.loanStatus = loanStatus;
-		EmployeeId = employeeId;
+		this.employeeId = employeeId;
 	}
 
 
@@ -136,11 +136,11 @@ public class LoanRequestEntity {
 	}
 	
 	public Long getEmployeeId() {
-		return EmployeeId;
+		return employeeId;
 	}
 
 	public void setEmployeeId(Long employeeId) {
-		EmployeeId = employeeId;
+		this.employeeId = employeeId;
 	}
 	
 	
